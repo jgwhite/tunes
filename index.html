@@ -34,7 +34,12 @@
   <script type="text/x-handlebars" data-template-name="artist">
     <ul>
       {{#each album in albums}}
-        <li>{{#linkTo "album" album}}{{album.name}}{{/linkTo}}</li>
+      <li>
+        {{#linkTo "album" album}}
+          {{album.name}}
+          <img {{bindAttr src="album.artwork"}}>
+        {{/linkTo}}
+      </li>
       {{/each}}
     </ul>
 

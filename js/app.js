@@ -25,16 +25,17 @@ App.ArtistsController = Ember.ArrayController.extend();
 // Helpers
 
 Ember.Handlebars.registerBoundHelper('timecode', function(value) {
-  if (value) {
-    var d = moment.duration(value, 'seconds'),
-        m = d.minutes().toString(),
-        s = d.seconds().toString();
-
-    if (s.length < 2) s = '0' + s;
-
-    return m + ':' + s;
-  }
+  if (value) return moment.duration(value, 'seconds').timecode();
 });
+
+moment.duration.fn.timecode = function() {
+  var m = this.minutes().toString(),
+      s = this.seconds().toString();
+
+  if (s.length < 1) s = '0' + s;
+
+  return m + ':' + s;
+}
 
 
 // Store
@@ -54,6 +55,7 @@ App.Artist = DS.Model.extend({
 
 App.Album = DS.Model.extend({
   name: DS.attr('string'),
+  artwork: DS.attr('string'),
   artist: DS.belongsTo('App.Artist'),
   tracks: DS.hasMany('App.Track')
 });

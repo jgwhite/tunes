@@ -10,6 +10,7 @@ App.Artist.FIXTURES = [{
 App.Album.FIXTURES = [{
   id: 'sung-tongs',
   name: 'Sung Tongs',
+  artwork: 'img/sung-tongs.jpg',
   artist: 'animal-collective',
   tracks: [
     'leaf-house',
@@ -28,6 +29,7 @@ App.Album.FIXTURES = [{
 }, {
   id: 'feels',
   name: 'Feels',
+  artwork: 'img/feels.jpg',
   artist: 'animal-collective',
   tracks: [
     'did-you-see-the-words',
