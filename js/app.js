@@ -1,9 +1,21 @@
 window.App = Ember.Application.create();
 
+// Router
+
+App.Router.map(function() {
+  this.resource('artists', function() {
+    this.resource('artist', { path: ':artist_id' });
+  });
+});
+
+// Store
+
 App.Store = DS.Store.extend({
   revision: 11,
   adapter: 'DS.FixtureAdapter'
 });
+
+// Models
 
 App.Artist = DS.Model.extend({
   name: DS.attr('string'),
@@ -22,45 +34,94 @@ App.Track = DS.Model.extend({
   album: DS.belongsTo('App.Album')
 });
 
+// Data
+
 App.Artist.FIXTURES = [{
-  id: 1,
+  id: 'animal-collective',
   name: 'Animal Collective',
-  albums: [1]
+  albums: [
+    'sung-tongs'
+  ]
 }];
 
 App.Album.FIXTURES = [{
-  id: 1,
+  id: 'sung-tongs',
   name: 'Sung Tongs',
-  artist: 1,
-  tracks: [1, 2, 3, 4]
+  artist: 'animal-collective',
+  tracks: [
+    'leaf-house',
+    'who-could-win-a-rabbit',
+    'the-softest-voice',
+    'winters-love',
+    'kids-on-holiday',
+    'sweet-road',
+    'visiting-friends',
+    'college',
+    'we-tigers',
+    'mouth-wooed-her',
+    'good-lovin-outside',
+    'whaddit-i-done'
+  ]
 }];
 
 App.Track.FIXTURES = [{
-  id: 1,
+  id: 'leaf-house',
   name: 'Leaf House',
   duration: 162,
-  album: 1
+  album: 'sung-tongs'
 }, {
-  id: 2,
+  id: 'who-could-win-a-rabbit',
   name: 'Who Could Win a Rabbit',
   duration: 138,
-  album: 1
+  album: 'sung-tongs'
 }, {
-  id: 3,
+  id: 'the-softest-voice',
   name: 'The Softest Voice',
   duration: 406,
-  album: 1
+  album: 'sung-tongs'
 }, {
-  id: 4,
+  id: 'winters-love',
   name: 'Winters Love',
   duration: 295,
-  album: 1
-// 'Kids on Holiday' – 5:47
-// 'Sweet Road' – 1:15
-// 'Visiting Friends' – 12:36
-// 'College' – 0:53
-// 'We Tigers' – 2:43
-// 'Mouth Wooed Her' – 4:24
-// 'Good Lovin Outside' – 4:26
-// 'Whaddit I Done' – 4:05
+  album: 'sung-tongs'
+}, {
+  id: 'kids-on-holiday',
+  name: 'Kids on Holiday',
+  duration: 347,
+  album: 'sung-tongs'
+}, {
+  id: 'sweet-road',
+  name: 'Sweet Road',
+  duration: 75,
+  album: 'sung-tongs'
+}, {
+  id: 'visiting-friends',
+  name: 'Visiting Friends',
+  duration: 756,
+  album: 'sung-tongs'
+}, {
+  id: 'college',
+  album: 'sung-tongs',
+  duration: 53,
+  name: 'College'
+}, {
+  id: 'we-tigers',
+  name: 'We Tigers',
+  duration: 163,
+  album: 'sung-tongs'
+}, {
+  id: 'mouth-wooed-her',
+  name: 'Mouth Wooed Her',
+  duration: 264,
+  album: 'sung-tongs'
+}, {
+  id: 'good-lovin-outside',
+  name: 'Good Lovin Outside',
+  duration: 266,
+  album: 'sung-tongs'
+}, {
+  id: 'whaddit-i-done',
+  name: 'Whaddit I Done',
+  duration: 245,
+  album: 'sung-tongs'
 }];
